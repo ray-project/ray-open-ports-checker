@@ -1,0 +1,12 @@
+runtime: python312
+
+instance_class: F2
+entrypoint: gunicorn server:app -w 4 -t 120 -k uvicorn.workers.UvicornWorker
+
+env_variables:
+  FORWARDED_ALLOW_IPS: "*"
+
+handlers:
+- url: /.*
+  secure: always
+  script: auto
